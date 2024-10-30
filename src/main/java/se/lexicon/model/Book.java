@@ -7,6 +7,7 @@ public class Book {
     private String title;
     private String author;
     private boolean available;
+    private Person borrower;
 
     public Book(String title, String author) {
         this.id = UUID.randomUUID().toString();
@@ -17,7 +18,7 @@ public class Book {
 
     public Book(String title, String author, Person borrower) {
         this(title, author);
-        if (borrower != null) this.available = false;
+        setBorrower(borrower);
     }
 
     public String getId() {
@@ -40,6 +41,24 @@ public class Book {
     public void setAuthor(String author) {
         if (author == null || author.isEmpty()) throw new IllegalArgumentException("Author should not be null or empty.");
         this.author = author;
+    }
+
+    public boolean getAvailable() {
+        return this.available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public Person getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(Person borrower) {
+        if (!this.available)  throw new IllegalArgumentException("Book is not available.");
+        this.borrower = borrower;
+        this.available = false;
     }
 
     public String getBookingInformation() {
