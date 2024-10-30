@@ -56,9 +56,8 @@ public class Book {
     }
 
     public void setBorrower(Person borrower) {
-        if (!this.available)  throw new IllegalArgumentException("Book is not available.");
         this.borrower = borrower;
-        setAvailable(false);
+        setAvailable(this.borrower == null);
     }
 
     public String getBookingInformation() {

@@ -22,11 +22,11 @@ public class Main {
         person2.loanBook(book3);
         person2.loanBook(book4);
 
+        System.out.println(book3.getAvailable());
         System.out.println(person2.getPersonInformation());
 
         person2.returnBook(book3);
-
         System.out.println(person2.getPersonInformation());
-
+        System.out.println(book3.getAvailable());
     }
 }

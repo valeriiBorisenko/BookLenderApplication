@@ -44,12 +44,13 @@ public class Person {
     }
 
     public void loanBook(Book book) {
+        if (!book.getAvailable()) throw new IllegalArgumentException("Book '" + book.getTitle() + "' is not available.");
         book.setBorrower(this);
         this.books = addBook(books, book);
     }
 
     public void returnBook(Book book) {
-        book.setAvailable(true);
+        book.setBorrower(null);
         this.books = removeBook(book);
     }
 
